@@ -1,28 +1,28 @@
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+var centerX;
+var centerY;
 var radius;
-var radiusIncr;
-
-function draw() {
-	var centerX=canvas.width/2;
-	var centerY=canvas.height/2;
-
-	setFillStyle("#000000");
-	fillRect(0,0,canvas.width,canvas.height);
-
-	setFillStyle("#FFCBEA");
-	fillCircle(centerX,centerY,radius);
-
-	radius+=radiusIncr;
-
-	if(radius<0) { radius=0; radiusIncr=Math.abs(radiusIncr); }
-	if(radius>100) { radius=100; radiusIncr=-Math.abs(radiusIncr); }
-}
 
 function main() {
 
-	radius=0;
-	radiusIncr=4;
+	canvas.width=window.innerWidth;
+	canvas.height=window.innerHeight;
 
-	setInterval(draw,1000/60);
+	centerX=canvas.width/2;
+	centerY=canvas.height/2;
+
+	radius=100;
+
+	ctx.fillStyle="#FFFFFF";
+	ctx.fillRect(0,0,canvas.width,canvas.height);
+
+	ctx.beginPath();
+	ctx.fillStyle="#FFCBEA";
+	ctx.arc(centerX,centerY,radius,radius,0,2*Math.PI);
+	ctx.fill();
+	ctx.closePath();
+
 }
 
 main();
